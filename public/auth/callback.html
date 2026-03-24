@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Google OAuth Callback</title>
+  <script type="module">
+    // Extract code and next from URL
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    const next = params.get('next') || '/';
+    
+    console.log('[OAuth Callback] Code:', code ? 'present' : 'missing', 'Next:', next);
+    
+    if (!code) {
+      document.body.innerHTML = '<h1>Error: No authorization code received</h1><p><a href="/login">Back to login</a></p>';
+    } else {
+      // Redirect to the SPA callback handler with the code
+      window.location.href = '/auth/callback?code=' + code + '&next=' + encodeURIComponent(next);
+    }
+  </script>
+</head>
+<body>
+  <p>Processing OAuth callback...</p>
+</body>
+</html>

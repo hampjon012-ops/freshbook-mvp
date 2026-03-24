@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { supabase } from '../lib/supabase'
 
-const ADMIN_URL = `${window.location.origin}/auth/callback`
+const ADMIN_URL = `${window.location.origin}/`
 
 const inputStyle: React.CSSProperties = {
   width: '100%', padding: '13px 14px', fontSize: 15,
