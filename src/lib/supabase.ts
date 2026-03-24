@@ -13,6 +13,7 @@ export const supabase = createClient(
 
 // Admin client with service_role key — used only for owner actions (invite stylist)
 // This is safe for an internal admin tool with restricted access
+// NOTE: Ensure Google Cloud Console has redirect URI: https://jfnafabrlumgvpzbfbuf.supabase.co/auth/v1/callback
 export const supabaseAdmin = createClient(
   'https://jfnafabrlumgvpzbfbuf.supabase.co',
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpmbmFmYWJybHVtZ3ZwemJmYnVmIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NDAwOTc2NiwiZXhwIjoyMDg5NTg1NzY2fQ.T6Gxu5mvmXiHa2hgtMYAPrSpejmzOug1ntw9QERgn3E',
