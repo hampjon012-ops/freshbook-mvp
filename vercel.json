@@ -1,7 +1,10 @@
 {
   "version": 2,
-  "public": "dist",
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "routes": [
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
