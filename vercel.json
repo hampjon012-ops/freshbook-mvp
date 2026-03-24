@@ -4,7 +4,8 @@
   "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
-  "rewrites": [
+  "routes": [
+    { "handle": "filesystem" },
     { "source": "/(.*)", "destination": "/index" }
   ]
 }
