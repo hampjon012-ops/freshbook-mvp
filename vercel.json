@@ -4,6 +4,7 @@
   "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
+  "framework": null,
   "routes": [
     { "src": "/(.*)", "dest": "/index.html" }
   ]
