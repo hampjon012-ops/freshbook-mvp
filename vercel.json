@@ -1,9 +1,8 @@
 {
   "version": 2,
-  "framework": null,
   "buildCommand": "npm run build:prod",
   "outputDirectory": "dist",
-  "routes": [
-    { "src": "/(.*)", "dest": "/index.html" }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
