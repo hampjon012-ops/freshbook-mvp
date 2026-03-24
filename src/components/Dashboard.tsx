@@ -233,7 +233,8 @@ function StylistDashboard({ session, profile }: { session: any; profile: UserPro
 }
 
 // ── Owner dashboard ───────────────────────────────────────────────────────────
-export default function Dashboard({ session }: { session: any }) {
+export default function Dashboard() {
+  const [session, setSession] = useState<any>(null)
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null)
   const [profileLoading, setProfileLoading] = useState(true)
 
@@ -252,8 +253,20 @@ export default function Dashboard({ session }: { session: any }) {
   const [inviteLoading, setInviteLoading] = useState(false)
   const [inviteMsg, setInviteMsg] = useState<{ text: string; ok: boolean } | null>(null)
 
+  // Get session on mount
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+    })
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, newSession) => {
+      setSession(newSession)
+    })
+    return () => subscription.unsubscribe()
+  }, [])
+
   // Load current user's role — auto-create profile if missing (e.g. invited via Google)
   useEffect(() => {
+    if (!session?.user?.id) return
     supabase
       .from('profiles')
       .select('id, full_name, role')
@@ -277,7 +290,7 @@ export default function Dashboard({ session }: { session: any }) {
         }
         setProfileLoading(false)
       })
-  }, [session.user.id])
+  }, [session?.user?.id])
 
   const fetchBookings = useCallback(async () => {
     const { data } = await supabase
